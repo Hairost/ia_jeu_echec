@@ -1,5 +1,8 @@
 package jeu.piece;
 
+import java.util.ArrayList;
+
+import jeu.Coordonnees;
 import jeu.Echiquier;
 
 public class Cavalier extends Piece {
@@ -45,5 +48,35 @@ public class Cavalier extends Piece {
 		}
 
 		return false;
+	}
+
+	public ArrayList<Coordonnees> listeDeplacementsValides() {
+		ArrayList<Coordonnees> listeCoordoonees = new ArrayList<Coordonnees>();
+
+		if (deplacementValide(x + 1, y + 2))
+			listeCoordoonees.add(new Coordonnees(x + 1, y + 2));
+
+		if (deplacementValide(x + 1, y - 2))
+			listeCoordoonees.add(new Coordonnees(x + 1, y - 2));
+
+		if (deplacementValide(x + 2, y + 1))
+			listeCoordoonees.add(new Coordonnees(x + 2, y + 1));
+
+		if (deplacementValide(x + 2, y - 1))
+			listeCoordoonees.add(new Coordonnees(x + 2, y - 1));
+
+		if (deplacementValide(x - 1, y + 2))
+			listeCoordoonees.add(new Coordonnees(x - 1, y + 2));
+
+		if (deplacementValide(x - 1, y - 2))
+			listeCoordoonees.add(new Coordonnees(x - 1, y - 2));
+
+		if (deplacementValide(x - 2, y + 1))
+			listeCoordoonees.add(new Coordonnees(x - 2, y + 1));
+
+		if (deplacementValide(x - 2, y - 1))
+			listeCoordoonees.add(new Coordonnees(x - 2, y - 1));
+
+		return listeCoordoonees;
 	}
 }

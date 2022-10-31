@@ -1,5 +1,8 @@
 package jeu.piece;
 
+import java.util.ArrayList;
+
+import jeu.Coordonnees;
 import jeu.Echiquier;
 
 public class Tour extends Piece {
@@ -59,5 +62,36 @@ public class Tour extends Piece {
 			}
 		}
 		return false;
+	}
+
+	public ArrayList<Coordonnees> listeDeplacementsValides() {
+		ArrayList<Coordonnees> listeCoordoonees = new ArrayList<Coordonnees>();
+
+		int x = this.x + 1;
+		int y = this.y;
+		while (deplacementValide(x, y)) {
+			listeCoordoonees.add(new Coordonnees(x, y));
+			x++;
+		}
+
+		x = this.x - 1;
+		while (deplacementValide(x, y)) {
+			listeCoordoonees.add(new Coordonnees(x, y));
+			x--;
+		}
+
+		x = this.x;
+		y = this.y + 1;
+		while (deplacementValide(x, y)) {
+			listeCoordoonees.add(new Coordonnees(x, y));
+			y++;
+		}
+
+		y = this.y - 1;
+		while (deplacementValide(x, y)) {
+			listeCoordoonees.add(new Coordonnees(x, y));
+			y--;
+		}
+		return listeCoordoonees;
 	}
 }

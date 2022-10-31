@@ -1,5 +1,8 @@
 package jeu.piece;
 
+import java.util.ArrayList;
+
+import jeu.Coordonnees;
 import jeu.Echiquier;
 
 public class Pion extends Piece {
@@ -15,7 +18,7 @@ public class Pion extends Piece {
 		super.deplacementValide(x, y);
 
 		// on vérifie si une pièce se trouve sur la case et peut être prise en diagonale
-		if (this.echiquier.getCase(x, y) != null) {
+		if (!this.echiquier.caseVide(x, y)) {
 			// on vérifie si la pièce est blanche
 			if (this.isBlanc()) {
 				if (x == this.x + 1 && y == this.y + 1) // déplacement en diagonale droite
@@ -36,11 +39,11 @@ public class Pion extends Piece {
 		}
 
 		// si aucune pièce ne se trouve sur la case, le pion peut avancer tout droit
-		else if (this.echiquier.getCase(x, y) == null) {
+		else if (this.echiquier.caseVide(x, y)) {
 			// on vérifie si la pièce est blanche
 			if (this.isBlanc()) {
 				// peut avancer de 2 case en avant pour le premier coup
-				if (x == this.x && y == this.y + 2 && isPremierCoup())
+				if (x == this.x && y == this.y + 2 && isPremierCoup() && this.echiquier.caseVide(x, y + 1))
 					return true;
 
 				// sinon avance de 1 case
@@ -52,7 +55,7 @@ public class Pion extends Piece {
 			// sinon elle est noire
 			else {
 				// peut avancer de 2 case en avant pour le premier coup
-				if (x == this.x && y == this.y - 2 && isPremierCoup())
+				if (x == this.x && y == this.y - 2 && isPremierCoup() && this.echiquier.caseVide(x, y - 1))
 					return true;
 
 				// sinon avance de 1 case
@@ -78,4 +81,39 @@ public class Pion extends Piece {
 		this.premierCoup = premierCoup;
 	}
 
+	public ArrayList<Coordonnees> listeDeplacementsValides() {
+		ArrayList<Coordonnees> listeCoordoonees = new ArrayList<Coordonnees>();
+
+		// on vérifie si la pièce est blanche
+		if (this.isBlanc()) {
+			if (deplacementValide(x + 1, y + 1))
+				listeCoordoonees.add(new Coordonnees(x + 1, y + 1));
+
+			if (deplacementValide(x - 1, y + 1))
+				listeCoordoonees.add(new Coordonnees(x - 1, y + 1));
+
+			if (deplacementValide(x, y + 1))
+				listeCoordoonees.add(new Coordonnees(x, y + 1));
+
+			if (deplacementValide(x, y + 2))
+				listeCoordoonees.add(new Coordonnees(x, y + 2));
+
+		}
+
+		// sinon elle est noire
+		else {
+			if (deplacementValide(x + 1, y - 1))
+				listeCoordoonees.add(new Coordonnees(x + 1, y - 1));
+
+			if (deplacementValide(x - 1, y - 1))
+				listeCoordoonees.add(new Coordonnees(x - 1, y - 1));
+
+			if (deplacementValide(x, y - 1))
+				listeCoordoonees.add(new Coordonnees(x, y - 1));
+
+			if (deplacementValide(x, y - 2))
+				listeCoordoonees.add(new Coordonnees(x, y - 2));
+		}
+		return listeCoordoonees;
+	}
 }

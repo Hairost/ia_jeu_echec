@@ -1,5 +1,8 @@
 package jeu.piece;
 
+import java.util.ArrayList;
+
+import jeu.Coordonnees;
 import jeu.Echiquier;
 
 public abstract class Piece {
@@ -98,4 +101,5 @@ public abstract class Piece {
 		return false;
 	}
 
+	public abstract ArrayList<Coordonnees> listeDeplacementsValides();
 }
