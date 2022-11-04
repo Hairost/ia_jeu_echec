@@ -198,4 +198,10 @@ public class Reine extends Piece {
 		}
 		return listeCoordoonees;
 	}
+
+	public boolean isReine() {
+		if (this.getNom().equals("reine"))
+			return true;
+		return false;
+	}
 }

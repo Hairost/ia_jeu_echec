@@ -7,8 +7,16 @@ import jeu.Echiquier;
 
 public class Tour extends Piece {
 
+	private boolean premierCoup;
+	private boolean positionGauche; // true si la tour commence à gauche, false sinon
+
 	public Tour(String couleur, int x, int y, Echiquier echiquier) {
 		super("tour", couleur, x, y, echiquier);
+		setPremierCoup(true);
+		if (x == 0)
+			setPositionGauche(true);
+		else
+			setPositionGauche(false);
 	}
 
 	public boolean deplacementValide(int x, int y) {
@@ -93,5 +101,27 @@ public class Tour extends Piece {
 			y--;
 		}
 		return listeCoordoonees;
+	}
+
+	public boolean isPremierCoup() {
+		return this.premierCoup;
+	}
+
+	public void setPremierCoup(boolean premierCoup) {
+		this.premierCoup = premierCoup;
+	}
+
+	public boolean isGauche() {
+		return this.positionGauche;
+	}
+
+	public void setPositionGauche(boolean positionGauche) {
+		this.positionGauche = positionGauche;
+	}
+
+	public boolean isTour() {
+		if (this.getNom().equals("tour"))
+			return true;
+		return false;
 	}
 }

@@ -79,4 +79,10 @@ public class Cavalier extends Piece {
 
 		return listeCoordoonees;
 	}
+
+	public boolean isCavalier() {
+		if (this.getNom().equals("cavalier"))
+			return true;
+		return false;
+	}
 }
