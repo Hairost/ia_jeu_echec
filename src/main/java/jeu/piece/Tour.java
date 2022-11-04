@@ -118,10 +118,4 @@ public class Tour extends Piece {
 	public void setPositionGauche(boolean positionGauche) {
 		this.positionGauche = positionGauche;
 	}
-
-	public boolean isTour() {
-		if (this.getNom().equals("tour"))
-			return true;
-		return false;
-	}
 }

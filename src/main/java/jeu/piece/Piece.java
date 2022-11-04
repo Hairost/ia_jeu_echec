@@ -102,4 +102,40 @@ public abstract class Piece {
 	}
 
 	public abstract ArrayList<Coordonnees> listeDeplacementsValides();
+
+	public boolean isPion() {
+		if (this.getNom().equals("pion"))
+			return true;
+		return false;
+	}
+
+	public boolean isTour() {
+		if (this.getNom().equals("tour"))
+			return true;
+		return false;
+	}
+
+	public boolean isCavalier() {
+		if (this.getNom().equals("cavalier"))
+			return true;
+		return false;
+	}
+
+	public boolean isFou() {
+		if (this.getNom().equals("fou"))
+			return true;
+		return false;
+	}
+
+	public boolean isRoi() {
+		if (this.getNom().equals("roi"))
+			return true;
+		return false;
+	}
+
+	public boolean isReine() {
+		if (this.getNom().equals("reine"))
+			return true;
+		return false;
+	}
 }

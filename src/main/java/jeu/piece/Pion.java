@@ -129,10 +129,4 @@ public class Pion extends Piece {
 		else
 			return false;
 	}
-
-	public boolean isPion() {
-		if (this.getNom().equals("pion"))
-			return true;
-		return false;
-	}
 }

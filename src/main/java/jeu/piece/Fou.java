@@ -120,10 +120,4 @@ public class Fou extends Piece {
 		}
 		return listeCoordoonees;
 	}
-
-	public boolean isFou() {
-		if (this.getNom().equals("fou"))
-			return true;
-		return false;
-	}
 }
