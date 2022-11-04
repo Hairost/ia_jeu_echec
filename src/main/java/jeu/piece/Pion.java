@@ -116,4 +116,17 @@ public class Pion extends Piece {
 		}
 		return listeCoordoonees;
 	}
+
+	public boolean isPromotion() {
+		if (this.isBlanc() && this.getY() == 7) {
+			return true;
+		}
+
+		else if (this.isNoir() && this.getY() == 0) {
+			return true;
+		}
+
+		else
+			return false;
+	}
 }
