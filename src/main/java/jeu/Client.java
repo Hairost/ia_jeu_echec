@@ -7,9 +7,8 @@ import java.util.concurrent.*;
 import java.util.function.Function;
 import java.util.function.Predicate;
 
-import static java.lang.String.format;
 import static java.util.concurrent.CompletableFuture.supplyAsync;
-import static java.util.function.Function.identity;
+
 
 public class Client {
 
