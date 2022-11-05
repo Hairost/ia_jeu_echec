@@ -72,6 +72,21 @@ public class Tour extends Piece {
 		return false;
 	}
 
+	public void deplacement(int x, int y) {
+		super.deplacement(x, y);
+		setPremierCoup(false); // si un déplacement à lieu, les coups suivants ne sont pas des premiers coups
+	}
+
+	// déplacement dans le cas d'un roque, on ne vérifie pas si on peut déplacer la
+	// pièce (vérif pour le déplacement du roi déjà faite)
+	public void deplacementRoque(int x, int y) {
+		this.echiquier.setCase(this.x, this.y, null);
+		this.x = x;
+		this.y = y;
+		this.echiquier.setCase(this.x, this.y, this);
+		setPremierCoup(false);
+	}
+
 	public ArrayList<Coordonnees> listeDeplacementsValides() {
 		ArrayList<Coordonnees> listeCoordoonees = new ArrayList<Coordonnees>();
 
