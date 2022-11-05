@@ -15,6 +15,7 @@ public class Jeu {
 
 	public Echiquier getEchiquier() {
 		return echiquier;
+		
 	}
 
 	public void setEchiquier(Echiquier echiquier) {
