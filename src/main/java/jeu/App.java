@@ -8,7 +8,7 @@ import java.util.regex.Matcher;
 import static java.util.function.Function.identity;
 import java.util.regex.Pattern;
 
-public class main {
+public class App {
     public static void main(String[] args) throws InterruptedException, ExecutionException, TimeoutException {
 
         Client client = new Client();
