@@ -149,21 +149,19 @@ public class Roi extends Piece {
 
 	// vérifie si le roi est en échec
 	public boolean isEchec() {
-		ArrayList<Piece> listePieces; // liste de pièces de couleur opposée à celle du roi
-
-		if (this.isBlanc())
-			listePieces = echiquier.getPiecesNoires();
-
-		else
-			listePieces = echiquier.getPiecesBlanches();
-
-		for (Piece piece : listePieces) {
-			// true si la piece a un déplacement possible sur la case du Roi
-			if (piece.deplacementValide(this.x, this.y)) {
-				return true;
-			}
-		}
-		return false;
+		return isEchec(this.x, this.y);
+		/*
+		 * ArrayList<Piece> listePieces; // liste de pièces de couleur opposée à celle
+		 * du roi
+		 * 
+		 * if (this.isBlanc()) listePieces = echiquier.getPiecesNoires();
+		 * 
+		 * else listePieces = echiquier.getPiecesBlanches();
+		 * 
+		 * for (Piece piece : listePieces) { // true si la piece a un déplacement
+		 * possible sur la case du Roi if (piece.deplacementValide(this.x, this.y)) {
+		 * return true; } } return false;
+		 */
 	}
 
 	// vérifie si le roi est en échec s'il bouge sur une case (x, y)
