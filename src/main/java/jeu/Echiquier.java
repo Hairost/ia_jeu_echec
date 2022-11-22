@@ -157,4 +157,12 @@ public class Echiquier {
 		}
 		return false;
 	}
+
+	public int evaluate() {
+		int result = 0; 
+		for(Piece p : this.getPiecesNoires()) {
+			result ++;
+		}
+		return result;
+	}
 }
