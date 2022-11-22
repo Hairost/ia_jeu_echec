@@ -22,7 +22,7 @@ public class Reine extends Piece {
 			if (x > this.x) {
 				// on parcourt la colonne pour voir s'il y a un obstacle
 				for (int i = this.x + 1; i < x; i++) {
-					if (!echiquier.caseVide(i, y))
+					if (!echiquier.isCaseVide(i, y))
 						return false;
 				}
 				return true;
@@ -32,7 +32,7 @@ public class Reine extends Piece {
 			else {
 				// on parcourt la colonne pour voir s'il y a un obstacle
 				for (int i = this.x - 1; i > x; i--) {
-					if (!echiquier.caseVide(i, y))
+					if (!echiquier.isCaseVide(i, y))
 						return false;
 				}
 				return true;
@@ -46,7 +46,7 @@ public class Reine extends Piece {
 			if (y > this.y) {
 				// on parcourt la ligne pour voir s'il y a un obstacle
 				for (int i = this.y + 1; i < y; i++) {
-					if (!echiquier.caseVide(i, x))
+					if (!echiquier.isCaseVide(i, x))
 						return false;
 				}
 				return true;
@@ -56,7 +56,7 @@ public class Reine extends Piece {
 			else {
 				// on parcourt la ligne pour voir s'il y a un obstacle
 				for (int i = this.y - 1; i > y; i--) {
-					if (!echiquier.caseVide(i, x))
+					if (!echiquier.isCaseVide(i, x))
 						return false;
 				}
 				return true;
@@ -84,7 +84,7 @@ public class Reine extends Piece {
 		if (x > this.x && y > this.y) {
 			while (this.x != x - 1 && this.y != y - 1) {
 
-				if (!echiquier.caseVide(x - 1, y - 1)) {
+				if (!echiquier.isCaseVide(x - 1, y - 1)) {
 					return false;
 				}
 				x--;
@@ -97,7 +97,7 @@ public class Reine extends Piece {
 		if (x < this.x && y > this.y) {
 			while (this.x != x + 1 && this.y != y - 1) {
 
-				if (!echiquier.caseVide(x + 1, y - 1)) {
+				if (!echiquier.isCaseVide(x + 1, y - 1)) {
 					return false;
 				}
 				x++;
@@ -110,7 +110,7 @@ public class Reine extends Piece {
 		if (x > this.x && y < this.y) {
 			while (this.x != x - 1 && this.y != y + 1) {
 
-				if (!echiquier.caseVide(x - 1, y + 1)) {
+				if (!echiquier.isCaseVide(x - 1, y + 1)) {
 					return false;
 				}
 				x--;
@@ -123,7 +123,7 @@ public class Reine extends Piece {
 		if (x < this.x && y < this.y) {
 			while (this.x != x + 1 && this.y != y + 1) {
 
-				if (!echiquier.caseVide(x + 1, y + 1)) {
+				if (!echiquier.isCaseVide(x + 1, y + 1)) {
 					return false;
 				}
 				x++;
@@ -197,5 +197,11 @@ public class Reine extends Piece {
 			y--;
 		}
 		return listeCoordoonees;
+	}
+
+	public String getLettre() {
+		if (this.isBlanc())
+			return "Q";
+		return "q";
 	}
 }

@@ -18,7 +18,7 @@ public class Pion extends Piece {
 		super.deplacementValide(x, y);
 
 		// on vérifie si une pièce se trouve sur la case et peut être prise en diagonale
-		if (!this.echiquier.caseVide(x, y)) {
+		if (!this.echiquier.isCaseVide(x, y)) {
 			// on vérifie si la pièce est blanche
 			if (this.isBlanc()) {
 				if (x == this.x + 1 && y == this.y + 1) // déplacement en diagonale droite
@@ -39,11 +39,11 @@ public class Pion extends Piece {
 		}
 
 		// si aucune pièce ne se trouve sur la case, le pion peut avancer tout droit
-		else if (this.echiquier.caseVide(x, y)) {
+		else if (this.echiquier.isCaseVide(x, y)) {
 			// on vérifie si la pièce est blanche
 			if (this.isBlanc()) {
 				// peut avancer de 2 case en avant pour le premier coup
-				if (x == this.x && y == this.y + 2 && isPremierCoup() && this.echiquier.caseVide(x, y + 1))
+				if (x == this.x && y == this.y + 2 && isPremierCoup() && this.echiquier.isCaseVide(x, y + 1))
 					return true;
 
 				// sinon avance de 1 case
@@ -55,7 +55,7 @@ public class Pion extends Piece {
 			// sinon elle est noire
 			else {
 				// peut avancer de 2 case en avant pour le premier coup
-				if (x == this.x && y == this.y - 2 && isPremierCoup() && this.echiquier.caseVide(x, y - 1))
+				if (x == this.x && y == this.y - 2 && isPremierCoup() && this.echiquier.isCaseVide(x, y - 1))
 					return true;
 
 				// sinon avance de 1 case
@@ -128,5 +128,11 @@ public class Pion extends Piece {
 
 		else
 			return false;
+	}
+
+	public String getLettre() {
+		if (this.isBlanc())
+			return "P";
+		return "p";
 	}
 }

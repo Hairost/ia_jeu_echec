@@ -18,6 +18,12 @@ public class Echiquier {
 		echiquier = new Piece[8][8];
 	}
 
+	static String positionToString(int x, int y) {
+		x += 97; // car le code ascii de a est 97
+		y++;
+		return (char) x + Integer.toString(y);
+	}
+
 	public Piece getCase(int x, int y) {
 		if (surEchiquier(x, y))
 			return echiquier[x][y];
@@ -65,7 +71,7 @@ public class Echiquier {
 		return x >= 0 && x <= 7 && y >= 0 && y <= 7;
 	}
 
-	public boolean caseVide(int x, int y) {
+	public boolean isCaseVide(int x, int y) {
 		if (echiquier[x][y] == null) {
 			return true;
 		}
@@ -91,7 +97,7 @@ public class Echiquier {
 
 		for (int i = 0; i < echiquier.length; i++) {
 			for (int j = 0; j < echiquier.length; j++) {
-				if (!caseVide(i, j) && getCase(i, j).getCouleur().equals("blanc")) {
+				if (!isCaseVide(i, j) && getCase(i, j).getCouleur().equals("blanc")) {
 					listePieces.add(getCase(i, j));
 				}
 			}
@@ -104,11 +110,33 @@ public class Echiquier {
 
 		for (int i = 0; i < echiquier.length; i++) {
 			for (int j = 0; j < echiquier.length; j++) {
-				if (!caseVide(i, j) && getCase(i, j).getCouleur().equals("noir")) {
+				if (!isCaseVide(i, j) && getCase(i, j).getCouleur().equals("noir")) {
 					listePieces.add(getCase(i, j));
 				}
 			}
 		}
 		return listePieces;
+	}
+
+	// retourne la position des pièces sur le plateau selon le protocole FEN
+	public String getFENposition() {
+		int k=0;
+		String rep = "";
+		for (int i = 0; i < 8; i++) {
+			for (int j = 7; i > -1; j--) {
+				if (isCaseVide(i, j))
+					k++;
+				else {
+					if (k != 0) {
+						rep += Integer.toString(k);
+						k = 0;
+					}
+					rep += getCase(i, j).getLettre();
+				}
+			}
+			if (i != 7)
+				rep += "/";
+		}
+		return rep;
 	}
 }

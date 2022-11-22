@@ -34,7 +34,7 @@ public class Fou extends Piece {
 		if (x > this.x && y > this.y) {
 			while (this.x != x - 1 && this.y != y - 1) {
 
-				if (!echiquier.caseVide(x - 1, y - 1)) {
+				if (!echiquier.isCaseVide(x - 1, y - 1)) {
 					return false;
 				}
 				x--;
@@ -47,7 +47,7 @@ public class Fou extends Piece {
 		if (x < this.x && y > this.y) {
 			while (this.x != x + 1 && this.y != y - 1) {
 
-				if (!echiquier.caseVide(x + 1, y - 1)) {
+				if (!echiquier.isCaseVide(x + 1, y - 1)) {
 					return false;
 				}
 				x++;
@@ -60,7 +60,7 @@ public class Fou extends Piece {
 		if (x > this.x && y < this.y) {
 			while (this.x != x - 1 && this.y != y + 1) {
 
-				if (!echiquier.caseVide(x - 1, y + 1)) {
+				if (!echiquier.isCaseVide(x - 1, y + 1)) {
 					return false;
 				}
 				x--;
@@ -73,7 +73,7 @@ public class Fou extends Piece {
 		if (x < this.x && y < this.y) {
 			while (this.x != x + 1 && this.y != y + 1) {
 
-				if (!echiquier.caseVide(x + 1, y + 1)) {
+				if (!echiquier.isCaseVide(x + 1, y + 1)) {
 					return false;
 				}
 				x++;
@@ -119,5 +119,11 @@ public class Fou extends Piece {
 			y--;
 		}
 		return listeCoordoonees;
+	}
+
+	public String getLettre() {
+		if (this.isBlanc())
+			return "B";
+		return "b";
 	}
 }

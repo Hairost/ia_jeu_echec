@@ -68,7 +68,7 @@ public abstract class Piece {
 		if (!surEchiquier(x, y))
 			return false;
 
-		if (!this.echiquier.caseVide(x, y)) {
+		if (!this.echiquier.isCaseVide(x, y)) {
 			Piece piece = this.echiquier.getCase(x, y);
 			// si piece de même couleur sur la case visée, deplacement invalide
 			if (!this.isCouleurOpposee(piece))
@@ -102,6 +102,9 @@ public abstract class Piece {
 	}
 
 	public abstract ArrayList<Coordonnees> listeDeplacementsValides();
+
+	public abstract String getLettre();
+
 
 	public boolean isPion() {
 		if (this.getNom().equals("pion"))

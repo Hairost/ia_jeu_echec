@@ -38,8 +38,8 @@ public class Roi extends Piece {
 		// petit roque
 		else if (this.isPetitRoque(x, y)) {
 			// on vérifie que les cases entre le roi et la tour sont vides
-			boolean caseVide1 = this.echiquier.caseVide(this.getX() + 1, this.getY());
-			boolean caseVide2 = this.echiquier.caseVide(this.getX() + 2, this.getY());
+			boolean caseVide1 = this.echiquier.isCaseVide(this.getX() + 1, this.getY());
+			boolean caseVide2 = this.echiquier.isCaseVide(this.getX() + 2, this.getY());
 			// on vérifie qu'il n'y a pas d'échec sur les cases où passe le roi
 			boolean echecCase1 = this.isEchec(this.getX() + 1, this.getY());
 			boolean echecCase2 = this.isEchec(this.getX() + 2, this.getY());
@@ -62,9 +62,9 @@ public class Roi extends Piece {
 		// grand roque
 		else if (this.isGrandRoque(x, y)) {
 			// on vérifie que les cases entre le roi et la tour sont vides
-			boolean caseVide1 = this.echiquier.caseVide(this.getX() - 1, this.getY());
-			boolean caseVide2 = this.echiquier.caseVide(this.getX() - 2, this.getY());
-			boolean caseVide3 = this.echiquier.caseVide(this.getX() - 3, this.getY());
+			boolean caseVide1 = this.echiquier.isCaseVide(this.getX() - 1, this.getY());
+			boolean caseVide2 = this.echiquier.isCaseVide(this.getX() - 2, this.getY());
+			boolean caseVide3 = this.echiquier.isCaseVide(this.getX() - 3, this.getY());
 			// on vérifie qu'il n'y a pas d'échec sur les cases où passe le roi
 			boolean echecCase1 = this.isEchec(this.getX() - 1, this.getY());
 			boolean echecCase2 = this.isEchec(this.getX() - 2, this.getY());
@@ -233,5 +233,11 @@ public class Roi extends Piece {
 		if (y == this.getY() && x == (this.getX() - 2) && this.isPremierCoup())
 			return true;
 		return false;
+	}
+
+	public String getLettre() {
+		if (this.isBlanc())
+			return "K";
+		return "k";
 	}
 }

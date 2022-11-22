@@ -79,4 +79,11 @@ public class Cavalier extends Piece {
 
 		return listeCoordoonees;
 	}
+
+	@Override
+	public String getLettre() {
+		if (this.isBlanc())
+			return "N";
+		return "n";
+	}
 }

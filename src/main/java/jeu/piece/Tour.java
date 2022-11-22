@@ -29,7 +29,7 @@ public class Tour extends Piece {
 			if (x > this.x) {
 				// on parcourt la colonne pour voir s'il y a un obstacle
 				for (int i = this.x + 1; i < x; i++) {
-					if (!echiquier.caseVide(i, y))
+					if (!echiquier.isCaseVide(i, y))
 						return false;
 				}
 				return true;
@@ -39,7 +39,7 @@ public class Tour extends Piece {
 			else {
 				// on parcourt la colonne pour voir s'il y a un obstacle
 				for (int i = this.x - 1; i > x; i--) {
-					if (!echiquier.caseVide(i, y))
+					if (!echiquier.isCaseVide(i, y))
 						return false;
 				}
 				return true;
@@ -53,7 +53,7 @@ public class Tour extends Piece {
 			if (y > this.y) {
 				// on parcourt la ligne pour voir s'il y a un obstacle
 				for (int i = this.y + 1; i < y; i++) {
-					if (!echiquier.caseVide(i, x))
+					if (!echiquier.isCaseVide(i, x))
 						return false;
 				}
 				return true;
@@ -63,7 +63,7 @@ public class Tour extends Piece {
 			else {
 				// on parcourt la ligne pour voir s'il y a un obstacle
 				for (int i = this.y - 1; i > y; i--) {
-					if (!echiquier.caseVide(i, x))
+					if (!echiquier.isCaseVide(i, x))
 						return false;
 				}
 				return true;
@@ -132,5 +132,11 @@ public class Tour extends Piece {
 
 	public void setPositionGauche(boolean positionGauche) {
 		this.positionGauche = positionGauche;
+	}
+
+	public String getLettre() {
+		if (this.isBlanc())
+			return "R";
+		return "r";
 	}
 }
