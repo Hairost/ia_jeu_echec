@@ -15,7 +15,7 @@ public class Pion extends Piece {
 	}
 
 	public boolean deplacementValide(int x, int y) {
-		super.deplacementValide(x, y);
+		if(super.deplacementValide(x, y) == false) return false;
 
 		// on vérifie si une pièce se trouve sur la case et peut être prise en diagonale
 		if (!this.echiquier.caseVide(x, y)) {

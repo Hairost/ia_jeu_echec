@@ -20,10 +20,12 @@ public class Tour extends Piece {
 	}
 
 	public boolean deplacementValide(int x, int y) {
-		super.deplacementValide(x, y);
+		if(super.deplacementValide(x, y) == false) return false;
+
+
 
 		// déplacement sur une colonne
-		if (x == this.x && y != this.y) {
+		if (x != this.x && y == this.y) {
 
 			// déplacement vers la droite
 			if (x > this.x) {
@@ -47,7 +49,7 @@ public class Tour extends Piece {
 		}
 
 		// déplacement sur une ligne
-		else if (x != this.x && y == this.y) {
+		else if (x == this.x && y != this.y) {
 
 			// déplacement vers la droite
 			if (y > this.y) {

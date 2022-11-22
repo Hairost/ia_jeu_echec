@@ -18,6 +18,10 @@ public class Echiquier {
 		echiquier = new Piece[8][8];
 	}
 
+	public Echiquier(Echiquier eq) {
+		this.echiquier = eq.echiquier;
+	}
+
 	public Piece getCase(int x, int y) {
 		if (surEchiquier(x, y))
 			return echiquier[x][y];
@@ -110,5 +114,36 @@ public class Echiquier {
 			}
 		}
 		return listePieces;
+	}
+
+	public void printEchiquier() {
+		for(int i=0; i<8; i++) {
+			for(int j=0; j<8; j++) {
+				Piece p = this.getCase(i, j);
+				try {
+				System.out.print(p.getNom()+" |");
+				}catch(NullPointerException e) {
+					System.out.print(" |");
+				}
+			}
+			System.out.println("");
+		}
+	}
+
+	public ArrayList<Echiquier> getPossibleMoves() {
+		ArrayList<Echiquier> list = new ArrayList<>();
+
+		ArrayList<Piece> pieces = this.getPiecesBlanches();
+		int i =0;
+		for (Piece piece : pieces) {
+			ArrayList<Coordonnees> coords = piece.listeDeplacementsValides();
+			for(Coordonnees coord : coords) {
+				Echiquier eq2 = new Echiquier(this);
+				eq2.getPieces().get(i).deplacement(coord.getX(), coord.getY());
+				list.add(eq2);
+			}
+			i++;
+		}
+		return list;
 	}
 }

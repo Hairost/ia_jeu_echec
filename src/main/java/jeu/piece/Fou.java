@@ -12,7 +12,7 @@ public class Fou extends Piece {
 	}
 
 	public boolean deplacementValide(int x, int y) {
-		super.deplacementValide(x, y);
+		if(super.deplacementValide(x, y) == false) return false;
 
 		// vérification du déplacement en diagonale
 		for (int i = 0; i <= 8; i++) {
