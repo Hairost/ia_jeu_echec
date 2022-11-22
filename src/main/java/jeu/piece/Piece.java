@@ -74,7 +74,7 @@ public abstract class Piece {
 			if (!this.isCouleurOpposee(piece))
 				return false;
 		}
-		return false;
+		return true;
 	};
 
 	// Deplacement de la piece aux coordonnées (x,y)

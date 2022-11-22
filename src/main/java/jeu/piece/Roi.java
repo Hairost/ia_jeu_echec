@@ -15,7 +15,7 @@ public class Roi extends Piece {
 	}
 
 	public boolean deplacementValide(int x, int y) {
-		super.deplacementValide(x, y);
+		if(super.deplacementValide(x, y) == false) return false;
 
 		// déplacement sur une ligne (droite ou gauche)
 		if ((x == this.x + 1 || x == this.x - 1) && y == this.y && !this.isEchec(x, y)) {

@@ -12,7 +12,7 @@ public class Reine extends Piece {
 	}
 
 	public boolean deplacementValide(int x, int y) {
-		super.deplacementValide(x, y);
+		if(super.deplacementValide(x, y) == false) return false;
 
 		// même déplacements que la tour
 		// déplacement sur une colonne
