@@ -19,6 +19,17 @@ public class App {
         System.out.println("test");
         echec.getPossibleMoves();
 
+        Minimax miniMax = new Minimax();
+        miniMax.constructTree(echec);
+        boolean result = miniMax.checkWin();
+
+        assertTrue(result);
+
+        miniMax.constructTree(echec);
+        result = miniMax.checkWin();
+
+        assertFalse(result);
+
         /*try {
             Client client = new Client();
             String position = "r1bqkbnr/pppp1ppp/2n5/1B2p3/4P3/5N2/PPPP1PPP/RNBQK2R b KQkq - 3 3";

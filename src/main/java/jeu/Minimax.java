@@ -1,6 +1,8 @@
 package jeu;
 
+import java.util.Comparator;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 public class Minimax {
     Tree tree;
@@ -34,7 +36,7 @@ public class Minimax {
         List<Node> children = node.getChildren();
         boolean isMaxPlayer = node.isMaxPlayer();
         children.forEach(child -> {
-            if (child.getNoOfBones() == 0) {
+            if (child.getEchiquier().isEnd()) {
                 child.setScore(isMaxPlayer ? 1 : -1);
             } else {
                 checkWin(child);
@@ -49,19 +51,6 @@ public class Minimax {
         return children.stream()
                 .max(isMaxPlayer ? byScoreComparator : byScoreComparator.reversed())
                 .orElseThrow(NoSuchElementException::new);
-    }
-
-    @Test
-    public void givenMiniMax_whenCheckWin_thenComputeOptimal() {
-        miniMax.constructTree(6);
-        boolean result = miniMax.checkWin();
-
-        assertTrue(result);
-
-        miniMax.constructTree(8);
-        result = miniMax.checkWin();
-
-        assertFalse(result);
     }
 
 }
