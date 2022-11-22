@@ -146,4 +146,15 @@ public class Echiquier {
 		}
 		return list;
 	}
+
+	public boolean isEnd() {
+		for(Piece p : this.getPieces()) {
+			if(p.getNom() == "roi") {
+				Roi pr = (Roi)p;
+				boolean value = pr.isEchec();
+				if(value == true) return true;
+			}
+		}
+		return false;
+	}
 }

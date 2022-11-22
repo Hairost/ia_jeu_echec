@@ -13,6 +13,14 @@ public class Node {
         return this.eq;
     }
 
+    public int getScore() {
+        return this.score;
+    }
+
+    public List<Node> getChildren() {
+        return this.children;
+    }
+
     public boolean isMaxPlayer() {
         return isMaxPlayer;
     }
