@@ -143,23 +143,39 @@ public class Echiquier {
 			pieces = this.getPiecesNoires();
 		}
 
-		int i = 0;
-		for (Piece piece : pieces) {
-			ArrayList<Coordonnees> coords = piece.listeDeplacementsValides();
-			for (Coordonnees coord : coords) {
-				Echiquier eq2 = this.clone();
-				eq2.getPieces().get(i).deplacement(coord.getX(), coord.getY());
-				Coordonnees coord_start = new Coordonnees(piece.getX(), piece.getY());
-				Move move = new Move(coord_start, new Coordonnees(coord.getX(), coord.getY()), eq2);
-				list.add(move);
+
+		//if (isEchec()) {
+		//	System.out.println("Echec ! ");
+		//} else {
+
+			int i = 0;
+			for (Piece piece : pieces) {
+				ArrayList<Coordonnees> coords = piece.listeDeplacementsValides();
+				for (Coordonnees coord : coords) {
+					Echiquier eq2 = this.clone();
+					eq2.getPieces().get(i).deplacement(coord.getX(), coord.getY());
+					Coordonnees coord_start = new Coordonnees(piece.getX(), piece.getY());
+					Move move = new Move(coord_start, new Coordonnees(coord.getX(), coord.getY()), eq2);
+					list.add(move);
+				}
+				i++;
+
 			}
-			i++;
-		}
+		//}
 		return list;
+
 	}
 
-	public boolean isEnd() {
-		for (Piece p : this.getPieces()) {
+	public boolean isEchec() {
+
+		ArrayList<Piece> pieces;
+		if (couleur == true)
+			pieces = this.getPiecesBlanches();
+		else {
+			pieces = this.getPiecesNoires();
+		}
+
+		for (Piece p : pieces) {
 			if (p.getNom() == "roi") {
 				Roi pr = (Roi) p;
 				boolean value = pr.isEchec();

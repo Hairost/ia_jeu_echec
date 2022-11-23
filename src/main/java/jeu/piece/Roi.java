@@ -178,6 +178,7 @@ public class Roi extends Piece {
 		for (Piece piece : listePieces) {
 			// true si la piece a un déplacement possible sur la case du Roi
 			if (piece.deplacementValide(x, y)) {
+				System.out.println(piece.getNom());
 				return true;
 			}
 		}
