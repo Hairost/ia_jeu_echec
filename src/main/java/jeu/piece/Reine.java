@@ -63,22 +63,24 @@ public class Reine extends Piece {
 				return true;
 			}
 		}
-
-		// même déplacements que le fou
+		boolean deplacementValide = false;
 		// vérification du déplacement en diagonale
 		for (int i = 0; i <= 8; i++) {
 			if (this.x + i == x && this.y + i == y)
-				return true;
+				deplacementValide = true;
 
 			else if (this.x - i == x && this.y - i == y)
-				return true;
+				deplacementValide = true;
 
 			else if (this.x + i == x && this.y - i == y)
-				return true;
+				deplacementValide = true;
 
 			else if (this.x - i == x && this.y + i == y)
-				return true;
+				deplacementValide = true;
 		}
+
+		if (!deplacementValide)
+			return false;
 
 		// vérification obstacles sur la diagonale
 		// diagonale haut droite

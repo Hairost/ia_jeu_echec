@@ -98,7 +98,7 @@ public class Echiquier {
 
 		for (int i = 0; i < echiquier.length; i++) {
 			for (int j = 0; j < echiquier.length; j++) {
-				if (!caseVide(i, j) && getCase(i, j).getCouleur().equals("blanc")) {
+				if (!caseVide(i, j) && getCase(i, j).isBlanc()) {
 					listePieces.add(getCase(i, j));
 				}
 			}
@@ -111,7 +111,7 @@ public class Echiquier {
 
 		for (int i = 0; i < echiquier.length; i++) {
 			for (int j = 0; j < echiquier.length; j++) {
-				if (!caseVide(i, j) && getCase(i, j).getCouleur().equals("noir")) {
+				if (!caseVide(i, j) && getCase(i, j).isNoir()) {
 					listePieces.add(getCase(i, j));
 				}
 			}
@@ -143,6 +143,7 @@ public class Echiquier {
 			pieces = this.getPiecesNoires();
 		}
 
+
 		//if (isEchec()) {
 		//	System.out.println("Echec ! ");
 		//} else {
@@ -158,6 +159,7 @@ public class Echiquier {
 					list.add(move);
 				}
 				i++;
+
 			}
 		//}
 		return list;
