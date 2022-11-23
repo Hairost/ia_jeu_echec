@@ -94,13 +94,12 @@ public class App {
     public static void inputGo() {
         
         Move move;
-        echec.getPossibleMoves();
-        echec.printEchiquier();
+        Minimax.bestmove = null;
         if (WhiteToMove) {
-            Minimax.maxi(4, echec.clone());
+            Minimax.maxi(3, echec.clone());
             move = Minimax.bestmove;
         } else {
-            Minimax.maxi(4, echec.clone());
+            Minimax.maxi(3, echec.clone());
             move = Minimax.bestmove;
         }
 
@@ -109,7 +108,7 @@ public class App {
         String result =  UCI_start_move + UCI_end_move ;
         System.out.println(move.pieceDebut.getX() + "|" + move.pieceDebut.getY());
         System.out.println(move.pieceFin.getX() + "|" + move.pieceFin.getY());
-       
+        echec.printEchiquier();
         echec.getPieceAt(move.pieceDebut.getX(),move.pieceDebut.getY()).deplacement(move.pieceFin.getX(), move.pieceFin.getY());
         System.out.println("bestmove " + result);
     }

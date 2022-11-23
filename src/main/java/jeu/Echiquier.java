@@ -195,7 +195,7 @@ public class Echiquier {
 			pieces = this.getPiecesNoires();
 		}
 
-		for(Piece p : pieces) {
+		for(Piece p : this.getPiecesBlanches()) {
 			if(p.getNom().equals("pion")) {
 				result --;
 			}
@@ -207,7 +207,7 @@ public class Echiquier {
 			}
 		}
 
-		result = result + 2*(this.getPossibleMoves().size());
+
 
 		// Ajouter mise en echec
 
