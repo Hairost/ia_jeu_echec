@@ -109,9 +109,9 @@ public class App {
         System.out.println("----");
 
         if (WhiteToMove) {
-             move = Minimax.maxiFirst(3,  echec);
+             move = Minimax.maxiFirst(4,  echec);
         } else {
-            move = Minimax.maxiFirst(3, echec);
+            move = Minimax.maxiFirst(4, echec);
         }
 
         String UCI_start_move = move.convertPieceDebutUCI();
