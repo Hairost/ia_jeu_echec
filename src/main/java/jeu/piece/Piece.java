@@ -19,6 +19,14 @@ public abstract class Piece {
 		setEchiquier(echiquier);
 	}
 
+	public Piece(Piece p) {
+		this.nom = p.nom;
+		this.couleur = p.couleur;
+		this.x = p.x;
+		this.y = p.y;
+		this.echiquier = p.echiquier;
+	}
+
 	public String getNom() {
 		return nom;
 	}

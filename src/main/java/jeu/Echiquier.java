@@ -13,13 +13,14 @@ import jeu.piece.Tour;
 public class Echiquier {
 
 	protected Piece[][] echiquier;
+	boolean couleur;
 
 	public Echiquier() {
 		echiquier = new Piece[8][8];
 	}
 
 	public Echiquier(Echiquier eq) {
-		this.echiquier = eq.echiquier;
+		this.echiquier = eq.echiquier.clone();
 	}
 
 	public Piece getCase(int x, int y) {
@@ -130,17 +131,25 @@ public class Echiquier {
 		}
 	}
 
-	public ArrayList<Echiquier> getPossibleMoves() {
-		ArrayList<Echiquier> list = new ArrayList<>();
+	public ArrayList<Move> getPossibleMoves() {
+		ArrayList<Move> list = new ArrayList<>();
 
-		ArrayList<Piece> pieces = this.getPiecesBlanches();
+		ArrayList<Piece> pieces ;
+		if(couleur == true) 
+			pieces = this.getPiecesBlanches();
+		else {
+			pieces = this.getPiecesNoires();
+		}
+
 		int i =0;
 		for (Piece piece : pieces) {
 			ArrayList<Coordonnees> coords = piece.listeDeplacementsValides();
 			for(Coordonnees coord : coords) {
-				Echiquier eq2 = new Echiquier(this);
+				Echiquier eq2 = this.clone();
 				eq2.getPieces().get(i).deplacement(coord.getX(), coord.getY());
-				list.add(eq2);
+				Coordonnees coord_start = new Coordonnees(piece.getX(), piece.getY());
+				Move move = new Move(coord_start, coord, eq2);
+				list.add(move);
 			}
 			i++;
 		}
@@ -160,9 +169,92 @@ public class Echiquier {
 
 	public int evaluate() {
 		int result = 0; 
-		for(Piece p : this.getPiecesNoires()) {
-			result ++;
+
+		ArrayList<Piece> pieces ;
+		if(couleur == true) 
+			pieces = this.getPiecesNoires();
+		else {
+			pieces = this.getPiecesBlanches();
 		}
+
+		for(Piece p : pieces) {
+			if(p.getNom().equals("pion")) {
+				result ++;
+			}
+			else if(p.getNom().equals("reine")) {
+				result += 10;
+			}
+			else {
+				result += 5;
+			}
+		}
+
+		if(couleur == true) 
+			pieces = this.getPiecesBlanches();
+		else {
+			pieces = this.getPiecesNoires();
+		}
+
+		for(Piece p : pieces) {
+			if(p.getNom().equals("pion")) {
+				result --;
+			}
+			else if(p.getNom().equals("reine")) {
+				result -= 10;
+			}
+			else {
+				result -= 5;
+			}
+		}
+
+		result = result + 2*(this.getPossibleMoves().size());
+
+		// Ajouter mise en echec
+
 		return result;
+	}
+
+	public Piece getPieceAt(int x, int y) {
+
+		for(Piece p : this.getPieces()) {
+			if(p.getX() == x && p.getY() == y) return p;
+		}
+		return null;
+	}
+
+	@Override
+	public Echiquier clone() {
+		Echiquier eq2 =  new Echiquier();
+		eq2.couleur = this.couleur;
+		eq2.echiquier = new Piece[8][8];
+		for(int i=0; i<8; i++) {
+			for(int j=0; j<8; j++) {
+				try {
+				if(this.echiquier[i][j].getNom() == "pion") {
+					eq2.echiquier[i][j] = new Pion(this.echiquier[i][j].getCouleur(), this.echiquier[i][j].getX(), this.echiquier[i][j].getY(), eq2);
+				}
+				else if(this.echiquier[i][j].getNom() == "fou") {
+					eq2.echiquier[i][j] = new Fou(this.echiquier[i][j].getCouleur(), this.echiquier[i][j].getX(), this.echiquier[i][j].getY(), eq2);
+				}
+				else if(this.echiquier[i][j].getNom() == "tour") {
+					eq2.echiquier[i][j] = new Tour(this.echiquier[i][j].getCouleur(), this.echiquier[i][j].getX(), this.echiquier[i][j].getY(), eq2);
+				}
+				else if(this.echiquier[i][j].getNom() == "cavalier") {
+					eq2.echiquier[i][j] = new Cavalier(this.echiquier[i][j].getCouleur(), this.echiquier[i][j].getX(), this.echiquier[i][j].getY(), eq2);
+				}
+				else if(this.echiquier[i][j].getNom() == "roi") {
+					eq2.echiquier[i][j] = new Roi(this.echiquier[i][j].getCouleur(), this.echiquier[i][j].getX(), this.echiquier[i][j].getY(), eq2);
+				}
+				else if(this.echiquier[i][j].getNom() == "reine") {
+					eq2.echiquier[i][j] = new Reine(this.echiquier[i][j].getCouleur(), this.echiquier[i][j].getX(), this.echiquier[i][j].getY(), eq2);
+				}
+			}catch(NullPointerException e) {
+
+			}
+
+			}
+		}
+
+		return eq2;
 	}
 }
