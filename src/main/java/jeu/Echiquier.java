@@ -143,25 +143,26 @@ public class Echiquier {
 			pieces = this.getPiecesNoires();
 		}
 
-
-		//if (isEchec()) {
-		//	System.out.println("Echec ! ");
-		//} else {
-
-			int i = 0;
-			for (Piece piece : pieces) {
-				ArrayList<Coordonnees> coords = piece.listeDeplacementsValides();
-				for (Coordonnees coord : coords) {
-					Echiquier eq2 = this.clone();
-					eq2.getPieces().get(i).deplacement(coord.getX(), coord.getY());
+		int i = 0;
+		for (Piece piece : pieces) {
+			ArrayList<Coordonnees> coords = piece.listeDeplacementsValides();
+			for (Coordonnees coord : coords) {
+				Echiquier eq2 = this.clone();
+				eq2.getPieces().get(i).deplacement(coord.getX(), coord.getY());
+				eq2 = eq2.getPieces().get(i).getEchiquier().clone();
+				
+				//System.out.println("-----");
+				//eq2.printEchiquier();
+				//System.out.println("-----");
+				if (!eq2.isEchec()) {
 					Coordonnees coord_start = new Coordonnees(piece.getX(), piece.getY());
 					Move move = new Move(coord_start, new Coordonnees(coord.getX(), coord.getY()), eq2);
 					list.add(move);
 				}
-				i++;
-
 			}
-		//}
+			i++;
+
+		}
 		return list;
 
 	}
@@ -200,9 +201,9 @@ public class Echiquier {
 			if (p.getNom().equals("pion")) {
 				result++;
 			} else if (p.getNom().equals("reine")) {
-				result += 10;
+				result += 50;
 			} else {
-				result += 5;
+				result += 20;
 			}
 		}
 
@@ -216,9 +217,9 @@ public class Echiquier {
 			if (p.getNom().equals("pion")) {
 				result--;
 			} else if (p.getNom().equals("reine")) {
-				result -= 10;
+				result -= 50;
 			} else {
-				result -= 5;
+				result -= 20;
 			}
 		}
 

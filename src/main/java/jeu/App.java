@@ -1,13 +1,12 @@
 package jeu;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Scanner;
 
 public class App {
     static String moves;
     static Echiquier echec;
     static private boolean WhiteToMove;
+    static boolean color_set = false;
 
     public static void main(String[] args) {
 
@@ -68,59 +67,45 @@ public class App {
             input = input.substring(4);
         }
 
+        if (color_set == false) {
+            if (input.contains("moves")) {
+                echec.couleur = false;
+            } else {
+                echec.couleur = true;
+            }
+        }
+
         if (input.contains("moves")) {
             input = input.substring(input.indexOf("moves") + 6);
+            moves = input;
 
-            if (WhiteToMove) {
-                moves = input;
-            } else {
-                moves = input;
-            }
             String[] all_moves = moves.split(" ");
 
-            if (all_moves.length % 2 == 0)
-                echec.couleur = true;
-            else
-                echec.couleur = false;
-
             String last_move = all_moves[all_moves.length - 1];
+            System.out.println(last_move);
             Move new_mouv = new Move(last_move, echec);
-            
-            //System.out.println(new_mouv.pieceDebut.getX() + "|" + new_mouv.pieceDebut.getY());
+
             echec.getPieceAt(new_mouv.pieceDebut.getX(), new_mouv.pieceDebut.getY())
                     .force_deplacement(new_mouv.pieceFin.getX(), new_mouv.pieceFin.getY());
-
         }
     }
 
     public static void inputGo() {
-        
+
         Move move = null;
 
-        /*for(Move mv : echec.getPossibleMoves()) {
-            System.out.println(mv.pieceDebut.getX()+"|"+mv.pieceDebut.getY()+" -> "+mv.pieceFin.getX()+"|"+mv.pieceFin.getY());
-        }*/
         echec.printEchiquier();
-        System.out.println("----");
-        echec.clone().printEchiquier();
-        /*for(Move mv :  echec.clone().getPossibleMoves()) {
-            System.out.println(mv.pieceDebut.getX()+"|"+mv.pieceDebut.getY()+" -> "+mv.pieceFin.getX()+"|"+mv.pieceFin.getY());
-        }*/
-        System.out.println("----");
 
-        if (WhiteToMove) {
-             move = Minimax.maxiFirst(4,  echec);
-        } else {
-            move = Minimax.maxiFirst(4, echec);
-        }
+        move = Minimax.maxiFirst(3, echec);
 
         String UCI_start_move = move.convertPieceDebutUCI();
         String UCI_end_move = move.convertPieceFinUCI();
-        String result =  UCI_start_move + UCI_end_move ;
+        String result = UCI_start_move + UCI_end_move;
         System.out.println(move.pieceDebut.getX() + "|" + move.pieceDebut.getY());
         System.out.println(move.pieceFin.getX() + "|" + move.pieceFin.getY());
         echec.printEchiquier();
-        echec.getPieceAt(move.pieceDebut.getX(),move.pieceDebut.getY()).deplacement(move.pieceFin.getX(), move.pieceFin.getY());
+        echec.getPieceAt(move.pieceDebut.getX(), move.pieceDebut.getY()).deplacement(move.pieceFin.getX(),
+                move.pieceFin.getY());
         System.out.println("bestmove " + result);
     }
 
