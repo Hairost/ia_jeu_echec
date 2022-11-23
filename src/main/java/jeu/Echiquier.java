@@ -207,7 +207,7 @@ public class Echiquier {
 			}
 		}
 
-
+		result = result + 2*(this.getPossibleMoves().size());
 
 		// Ajouter mise en echec
 

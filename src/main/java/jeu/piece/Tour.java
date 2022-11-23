@@ -25,7 +25,7 @@ public class Tour extends Piece {
 
 
 		// déplacement sur une colonne
-		if (x != this.x && y == this.y) {
+		if (x == this.x && y != this.y) {
 
 			// déplacement vers la droite
 			if (x > this.x) {
@@ -49,7 +49,7 @@ public class Tour extends Piece {
 		}
 
 		// déplacement sur une ligne
-		else if (x == this.x && y != this.y) {
+		else if (x != this.x && y == this.y) {
 
 			// déplacement vers la droite
 			if (y > this.y) {

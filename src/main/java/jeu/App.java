@@ -1,5 +1,7 @@
 package jeu;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Scanner;
 
 public class App {
@@ -94,14 +96,18 @@ public class App {
     public static void inputGo() {
         
         Move move;
-        Minimax.bestmove = null;
-        if (WhiteToMove) {
-            Minimax.maxi(3, echec.clone());
-            move = Minimax.bestmove;
-        } else {
-            Minimax.maxi(3, echec.clone());
-            move = Minimax.bestmove;
+
+        for(Move mv : echec.getPossibleMoves()) {
+            System.out.println(mv.pieceDebut.getX()+"|"+mv.pieceDebut.getY()+" -> "+mv.pieceFin.getX()+"|"+mv.pieceFin.getY());
         }
+
+        Minimax.bestmove = new HashMap<Integer, Move>();
+        if (WhiteToMove) {
+             move = (Move)Minimax.maxi(3, echec.clone()).get(0);
+        } else {
+            move = (Move)Minimax.maxi(3, echec.clone()).get(0);
+        }
+        System.out.println(Minimax.bestmove.size()+"");
 
         String UCI_start_move = move.convertPieceDebutUCI();
         String UCI_end_move = move.convertPieceFinUCI();
