@@ -12,22 +12,27 @@ public class Fou extends Piece {
 	}
 
 	public boolean deplacementValide(int x, int y) {
-		if(super.deplacementValide(x, y) == false) return false;
+		boolean deplacementValide = false;
+		if (super.deplacementValide(x, y) == false)
+			return false;
 
 		// vérification du déplacement en diagonale
 		for (int i = 0; i <= 8; i++) {
 			if (this.x + i == x && this.y + i == y)
-				return true;
+				deplacementValide = true;
 
 			else if (this.x - i == x && this.y - i == y)
-				return true;
+				deplacementValide = true;
 
 			else if (this.x + i == x && this.y - i == y)
-				return true;
+				deplacementValide = true;
 
 			else if (this.x - i == x && this.y + i == y)
-				return true;
+				deplacementValide = true;
 		}
+
+		if (!deplacementValide)
+			return false;
 
 		// vérification obstacles sur la diagonale
 		// diagonale haut droite
