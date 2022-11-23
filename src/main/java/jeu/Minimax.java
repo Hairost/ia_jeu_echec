@@ -6,6 +6,20 @@ import java.util.HashMap;
 public class Minimax {
     static HashMap<Integer, Move> bestmove = new HashMap<>();
 
+    public static Move maxiFirst(int depth, Echiquier eq) {
+        Move bestmove = null;
+        int max = -999999;
+        for (Move mv : eq.getPossibleMoves()) {
+            System.out.println(mv.pieceDebut.getX()+"/"+mv.pieceDebut.getY()+" -> "+mv.pieceFin.getX()+"/"+mv.pieceFin.getY());
+            int score = (int)mini(depth - 1, mv.eq).get(1);
+            if (score > max){
+                bestmove = new Move(mv.pieceDebut, mv.pieceFin, eq);
+                max = score;
+            }   
+        }
+        return bestmove;
+    }
+
     @SuppressWarnings("all")
     public static ArrayList maxi(int depth, Echiquier eq) {
         

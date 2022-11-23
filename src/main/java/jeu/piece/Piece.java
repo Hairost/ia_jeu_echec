@@ -95,6 +95,15 @@ public abstract class Piece {
 		}
 	}
 
+	// Deplacement de la piece aux coordonnées (x,y)
+	public void force_deplacement(int x, int y) {
+		this.echiquier.setCase(this.x, this.y, null);
+		this.x = x;
+		this.y = y;
+		this.echiquier.setCase(this.x, this.y, this);
+
+	}
+
 	public boolean isBlanc() {
 		return getCouleur().equals("blanc");
 	}

@@ -71,6 +71,7 @@ public class Echiquier {
 	}
 
 	public boolean caseVide(int x, int y) {
+		if(x>7 || y>7 || x<0 || y<0) return false;
 		if (echiquier[x][y] == null) {
 			return true;
 		}
@@ -148,7 +149,7 @@ public class Echiquier {
 				Echiquier eq2 = this.clone();
 				eq2.getPieces().get(i).deplacement(coord.getX(), coord.getY());
 				Coordonnees coord_start = new Coordonnees(piece.getX(), piece.getY());
-				Move move = new Move(coord_start, coord, eq2);
+				Move move = new Move(coord_start, new Coordonnees(coord.getX(), coord.getY()), eq2);
 				list.add(move);
 			}
 			i++;
@@ -252,6 +253,16 @@ public class Echiquier {
 
 			}
 
+			}
+		}
+
+		for(int i=0; i<8; i++) {
+			for(int j=0; j<8; j++) {
+				try {
+					eq2.echiquier[i][j].setEchiquier(eq2);
+				}catch(NullPointerException e){
+					
+				}
 			}
 		}
 

@@ -88,26 +88,31 @@ public class App {
             
             //System.out.println(new_mouv.pieceDebut.getX() + "|" + new_mouv.pieceDebut.getY());
             echec.getPieceAt(new_mouv.pieceDebut.getX(), new_mouv.pieceDebut.getY())
-                    .deplacement(new_mouv.pieceFin.getX(), new_mouv.pieceFin.getY());
+                    .force_deplacement(new_mouv.pieceFin.getX(), new_mouv.pieceFin.getY());
 
         }
     }
 
     public static void inputGo() {
         
-        Move move;
+        Move move = null;
 
-        for(Move mv : echec.getPossibleMoves()) {
+        /*for(Move mv : echec.getPossibleMoves()) {
             System.out.println(mv.pieceDebut.getX()+"|"+mv.pieceDebut.getY()+" -> "+mv.pieceFin.getX()+"|"+mv.pieceFin.getY());
-        }
+        }*/
+        echec.printEchiquier();
+        System.out.println("----");
+        echec.clone().printEchiquier();
+        /*for(Move mv :  echec.clone().getPossibleMoves()) {
+            System.out.println(mv.pieceDebut.getX()+"|"+mv.pieceDebut.getY()+" -> "+mv.pieceFin.getX()+"|"+mv.pieceFin.getY());
+        }*/
+        System.out.println("----");
 
-        Minimax.bestmove = new HashMap<Integer, Move>();
         if (WhiteToMove) {
-             move = (Move)Minimax.maxi(3, echec.clone()).get(0);
+             move = Minimax.maxiFirst(3,  echec);
         } else {
-            move = (Move)Minimax.maxi(3, echec.clone()).get(0);
+            move = Minimax.maxiFirst(3, echec);
         }
-        System.out.println(Minimax.bestmove.size()+"");
 
         String UCI_start_move = move.convertPieceDebutUCI();
         String UCI_end_move = move.convertPieceFinUCI();
