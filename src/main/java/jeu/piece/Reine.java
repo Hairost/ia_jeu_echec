@@ -47,7 +47,7 @@ public class Reine extends Piece {
 			if (y > this.y) {
 				// on parcourt la ligne pour voir s'il y a un obstacle
 				for (int i = this.y + 1; i < y; i++) {
-					if (!echiquier.caseVide(i, x))
+					if (!echiquier.caseVide(x, i))
 						return false;
 				}
 				return true;
@@ -57,7 +57,7 @@ public class Reine extends Piece {
 			else {
 				// on parcourt la ligne pour voir s'il y a un obstacle
 				for (int i = this.y - 1; i > y; i--) {
-					if (!echiquier.caseVide(i, x))
+					if (!echiquier.caseVide(x, i))
 						return false;
 				}
 				return true;
