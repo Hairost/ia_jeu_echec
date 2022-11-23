@@ -15,7 +15,8 @@ public class Roi extends Piece {
 	}
 
 	public boolean deplacementValide(int x, int y) {
-		if(super.deplacementValide(x, y) == false) return false;
+		if (super.deplacementValide(x, y) == false)
+			return false;
 
 		// déplacement sur une ligne (droite ou gauche)
 		if ((x == this.x + 1 || x == this.x - 1) && y == this.y && !this.isEchec(x, y)) {
@@ -53,7 +54,7 @@ public class Roi extends Piece {
 
 				if (piece != null && piece.isTour()) {
 					Tour tour = (Tour) piece;
-					if (tour.isPremierCoup())
+					if (tour.isPremierCoup() && this.isPremierCoup())
 						return true;
 				}
 			}
@@ -77,7 +78,7 @@ public class Roi extends Piece {
 					piece = this.getEchiquier().getCase(0, 7);
 				if (piece != null && piece.isTour()) {
 					Tour tour = (Tour) piece;
-					if (tour.isPremierCoup()) {
+					if (tour.isPremierCoup() && this.isPremierCoup()) {
 						return true;
 					}
 				}
