@@ -15,7 +15,8 @@ public class Pion extends Piece {
 	}
 
 	public boolean deplacementValide(int x, int y) {
-		if(super.deplacementValide(x, y) == false) return false;
+		if (super.deplacementValide(x, y) == false)
+			return false;
 
 		// on vérifie si une pièce se trouve sur la case et peut être prise en diagonale
 		if (!this.echiquier.caseVide(x, y)) {
@@ -71,6 +72,8 @@ public class Pion extends Piece {
 	public void deplacement(int x, int y) {
 		super.deplacement(x, y);
 		setPremierCoup(false); // si un déplacement à lieu, les coups suivants ne sont pas des premiers coups
+		if (isPromotion())
+			this.getEchiquier().setCase(x, y, new Reine(this.getCouleur(), x, y, this.getEchiquier()));
 	}
 
 	public boolean isPremierCoup() {
