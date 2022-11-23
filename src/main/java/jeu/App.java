@@ -5,7 +5,6 @@ import java.util.Scanner;
 public class App {
     static String moves;
     static Echiquier echec;
-    static private boolean WhiteToMove;
     static boolean color_set = false;
 
     public static void main(String[] args) {
