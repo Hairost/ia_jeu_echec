@@ -54,7 +54,7 @@ public class Roi extends Piece {
 
 				if (piece != null && piece.isTour()) {
 					Tour tour = (Tour) piece;
-					if (tour.isPremierCoup() && this.isPremierCoup())
+					if (tour.isPremierCoup())
 						return true;
 				}
 			}
@@ -78,7 +78,7 @@ public class Roi extends Piece {
 					piece = this.getEchiquier().getCase(0, 7);
 				if (piece != null && piece.isTour()) {
 					Tour tour = (Tour) piece;
-					if (tour.isPremierCoup() && this.isPremierCoup()) {
+					if (tour.isPremierCoup()) {
 						return true;
 					}
 				}
