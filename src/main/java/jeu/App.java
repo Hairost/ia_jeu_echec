@@ -2,6 +2,8 @@ package jeu;
 
 import java.util.Scanner;
 
+import jeu.piece.Tour;
+
 public class App {
 	static String moves;
 	static Echiquier echec;
@@ -88,6 +90,29 @@ public class App {
 					.force_deplacement(new_mouv.pieceFin.getX(), new_mouv.pieceFin.getY());
 			if (new_mouv.promotedPiece != null)
 				echec.setCase(new_mouv.pieceFin.getX(), new_mouv.pieceFin.getY(), new_mouv.promotedPiece);
+
+			if (new_mouv.isPetitRoque) {
+				if (!echec.couleur) {
+					Tour tour = (Tour) echec.getCase(7, 0);
+					tour.deplacementRoque(5, 0);
+				} else {
+					Tour tour = (Tour) echec.getCase(7, 7);
+					tour.deplacementRoque(5, 7);
+				}
+			}
+
+			else if (new_mouv.isGrandRoque) {
+				if (!echec.couleur) {
+					Tour tour = (Tour) echec.getCase(0, 0);
+					tour.deplacementRoque(3, 0);
+				}
+
+				else {
+					Tour tour = (Tour) echec.getCase(0, 7);
+					tour.deplacementRoque(3, 7);
+				}
+			}
+			return;
 		}
 	}
 

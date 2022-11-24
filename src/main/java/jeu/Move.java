@@ -4,6 +4,7 @@ import jeu.piece.Cavalier;
 import jeu.piece.Fou;
 import jeu.piece.Piece;
 import jeu.piece.Reine;
+import jeu.piece.Roi;
 import jeu.piece.Tour;
 
 public class Move {
@@ -13,6 +14,7 @@ public class Move {
 	Echiquier eq;
 	boolean isPromotion;
 	Piece promotedPiece = null;
+	boolean isPetitRoque = false, isGrandRoque = false;
 
 	public Move(Coordonnees p1, Coordonnees p2, Echiquier eq) {
 		this.pieceDebut = p1;
@@ -34,6 +36,16 @@ public class Move {
 		char c2 = move.charAt(1);
 		char c3 = move.charAt(2);
 		char c4 = move.charAt(3);
+
+		if (move.equals("e1g1") || move.equals("e8q8")) {
+			if (((Roi) eq.getCase(c1 - 97, c2 - 49)).isPremierCoup())
+				isPetitRoque = true;
+		}
+
+		else if (move.equals("e1c1") || move.equals("e8c8")) {
+			if (((Roi) eq.getCase(c1 - 97, c2 - 49)).isPremierCoup())
+				isGrandRoque = true;
+		}
 
 		try {
 			char c5 = move.charAt(4);
