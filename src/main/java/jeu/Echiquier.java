@@ -150,21 +150,24 @@ public class Echiquier {
 				Echiquier eq2 = this.clone();
 				eq2.getPieces().get(i).deplacement(coord.getX(), coord.getY());
 				eq2 = eq2.getPieces().get(i).getEchiquier().clone();
-				
-				//System.out.println("-----");
-				//eq2.printEchiquier();
-				//System.out.println("-----");
+
+				// System.out.println("-----");
+				// eq2.printEchiquier();
+				// System.out.println("-----");
 				if (!eq2.isEchec()) {
 					Coordonnees coord_start = new Coordonnees(piece.getX(), piece.getY());
-					Move move = new Move(coord_start, new Coordonnees(coord.getX(), coord.getY()), eq2);
+					Move move;
+					if (piece.isPion() && ((Pion) piece).isPromotion()) // si la piece est un pion et est promu
+						move = new Move(coord_start, new Coordonnees(coord.getX(), coord.getY()), eq2, true);
+
+					else
+						move = new Move(coord_start, new Coordonnees(coord.getX(), coord.getY()), eq2);
 					list.add(move);
 				}
 			}
 			i++;
-
 		}
 		return list;
-
 	}
 
 	public boolean isEchec() {
