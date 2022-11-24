@@ -157,10 +157,11 @@ public class Echiquier {
 				if (!eq2.isEchec()) {
 					Coordonnees coord_start = new Coordonnees(piece.getX(), piece.getY());
 					Move move;
-					if (piece.isPion() && ((Pion) piece).isPromotion()) // si la piece est un pion et est promu
+					if (piece.isPion() && ((Pion) piece).isPromotion(coord.getY())) {// si la piece est un pion et est
+																						// promue
 						move = new Move(coord_start, new Coordonnees(coord.getX(), coord.getY()), eq2, true);
 
-					else
+					} else
 						move = new Move(coord_start, new Coordonnees(coord.getX(), coord.getY()), eq2);
 					list.add(move);
 				}

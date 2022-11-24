@@ -132,4 +132,17 @@ public class Pion extends Piece {
 		else
 			return false;
 	}
+
+	public boolean isPromotion(int y) {
+		if (this.isBlanc() && y == 7) {
+			return true;
+		}
+
+		else if (this.isNoir() && y == 0) {
+			return true;
+		}
+
+		else
+			return false;
+	}
 }
