@@ -134,11 +134,11 @@ public class Echiquier {
 	}
 
 	public void updateEchiquier() {
-		for(int i=0; i<8; i++) {
-			for(int j=0; j<8; j++) {
-				try  {
-				this.getCase(i, j).setEchiquier(this);
-				}catch(NullPointerException e) {
+		for (int i = 0; i < 8; i++) {
+			for (int j = 0; j < 8; j++) {
+				try {
+					this.getCase(i, j).setEchiquier(this);
+				} catch (NullPointerException e) {
 
 				}
 			}
@@ -211,7 +211,7 @@ public class Echiquier {
 	}
 
 	public boolean isOpponentEchec() {
-		
+
 		ArrayList<Piece> pieces;
 		if (couleur == true)
 			pieces = this.getPiecesNoires();
@@ -229,7 +229,6 @@ public class Echiquier {
 		}
 		return false;
 	}
-
 
 	public boolean isEchecEtMat() {
 
@@ -252,7 +251,7 @@ public class Echiquier {
 	}
 
 	public boolean isOpponentEchecEtMat() {
-		
+
 		ArrayList<Piece> pieces;
 		if (couleur == true)
 			pieces = this.getPiecesNoires();
@@ -270,7 +269,6 @@ public class Echiquier {
 		}
 		return false;
 	}
-
 
 	public int evaluate() {
 		int result = 0;
@@ -312,22 +310,21 @@ public class Echiquier {
 
 		// Ajouter mise en echec
 
-		if(this.isEchec()) {
+		if (this.isEchec()) {
 			result -= 5;
 		}
 
-		if(this.isOpponentEchec()) {
+		if (this.isOpponentEchec()) {
 			result += 5;
 		}
 
-		if(this.isEchecEtMat()) {
+		if (this.isEchecEtMat()) {
 			result -= 500;
 		}
 
-		if(this.isOpponentEchecEtMat()) {
+		if (this.isOpponentEchecEtMat()) {
 			result += 500;
 		}
-
 
 		return result;
 	}

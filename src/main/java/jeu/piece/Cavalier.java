@@ -12,7 +12,8 @@ public class Cavalier extends Piece {
 	}
 
 	public boolean deplacementValide(int x, int y) {
-		if(super.deplacementValide(x, y) == false) return false;
+		if (super.deplacementValide(x, y) == false)
+			return false;
 
 		// on teste les différents déplacements en L
 		if (x == this.x + 1 && y == this.y + 2) {
