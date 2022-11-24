@@ -121,15 +121,16 @@ public class App {
 		Move move = null;
 
 		echec.printEchiquier();
+        System.out.println("info : moves possible " +echec.getPossibleMoves().size());
 
 		move = Minimax.maxiFirst(3, echec);
 
 		String UCI_start_move = move.convertPieceDebutUCI();
 		String UCI_end_move = move.convertPieceFinUCI();
 		String result = UCI_start_move + UCI_end_move;
-		System.out.println(move.pieceDebut.getX() + "|" + move.pieceDebut.getY());
-		System.out.println(move.pieceFin.getX() + "|" + move.pieceFin.getY());
-		echec.printEchiquier();
+		//System.out.println(move.pieceDebut.getX() + "|" + move.pieceDebut.getY());
+		//System.out.println(move.pieceFin.getX() + "|" + move.pieceFin.getY());
+		//echec.printEchiquier();
 		echec.getPieceAt(move.pieceDebut.getX(), move.pieceDebut.getY()).deplacement(move.pieceFin.getX(),
 				move.pieceFin.getY());
 		System.out.println("bestmove " + result);

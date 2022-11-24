@@ -163,9 +163,11 @@ public class Echiquier {
 				if (couleur == true) {
 					eq2.getPiecesBlanches().get(i).deplacement(coord.getX(), coord.getY());
 					eq2 = eq2.getPiecesBlanches().get(i).getEchiquier().clone();
+					eq2.updateEchiquier();
 				} else {
 					eq2.getPiecesNoires().get(i).deplacement(coord.getX(), coord.getY());
 					eq2 = eq2.getPiecesNoires().get(i).getEchiquier().clone();
+					eq2.updateEchiquier();
 				}
 
 				// System.out.println("-----");
@@ -275,6 +277,22 @@ public class Echiquier {
 
 		ArrayList<Piece> pieces;
 		if (couleur == true)
+			pieces = this.getPiecesBlanches();
+		else {
+			pieces = this.getPiecesNoires();
+		}
+
+		for (Piece p : pieces) {
+			if (p.getNom().equals("pion")) {
+				result += 5;
+			} else if (p.getNom().equals("reine")) {
+				result += 50;
+			} else {
+				result += 30;
+			}
+		}
+
+		if (couleur == true)
 			pieces = this.getPiecesNoires();
 		else {
 			pieces = this.getPiecesBlanches();
@@ -282,48 +300,32 @@ public class Echiquier {
 
 		for (Piece p : pieces) {
 			if (p.getNom().equals("pion")) {
-				result++;
-			} else if (p.getNom().equals("reine")) {
-				result += 50;
-			} else {
-				result += 20;
-			}
-		}
-
-		if (couleur == true)
-			pieces = this.getPiecesBlanches();
-		else {
-			pieces = this.getPiecesNoires();
-		}
-
-		for (Piece p : this.getPiecesBlanches()) {
-			if (p.getNom().equals("pion")) {
-				result--;
+				result -= 5;
 			} else if (p.getNom().equals("reine")) {
 				result -= 50;
 			} else {
-				result -= 20;
+				result -= 30;
 			}
 		}
 
-		result = result + 5 * (this.getPossibleMoves().size());
+		result += 2 * (this.getPossibleMoves().size());
 
 		// Ajouter mise en echec
 
 		if(this.isEchec()) {
-			result -= 500;
+			result -= 5;
 		}
 
 		if(this.isOpponentEchec()) {
-			result += 500;
+			result += 5;
 		}
 
 		if(this.isEchecEtMat()) {
-			result -= 1000;
+			result -= 500;
 		}
 
 		if(this.isOpponentEchecEtMat()) {
-			result += 1000;
+			result += 500;
 		}
 
 
