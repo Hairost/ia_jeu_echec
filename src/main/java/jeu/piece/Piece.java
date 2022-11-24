@@ -85,6 +85,19 @@ public abstract class Piece {
 		return true;
 	};
 
+	public boolean deplacementValide2(int x, int y) {
+		if (!surEchiquier(x, y))
+			return false;
+
+		if (!this.echiquier.caseVide(x, y)) {
+			Piece piece = this.echiquier.getCase(x, y);
+			// si piece de même couleur sur la case visée, deplacement invalide
+			if (!this.isCouleurOpposee(piece))
+				return false;
+		}
+		return true;
+	};
+
 	// Deplacement de la piece aux coordonnées (x,y)
 	public void deplacement(int x, int y) {
 		if (deplacementValide(x, y)) {

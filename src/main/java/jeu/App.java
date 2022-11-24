@@ -71,8 +71,10 @@ public class App {
         if (color_set == false) {
             if (input.contains("moves")) {
                 echec.couleur = false;
+                color_set = true;
             } else {
                 echec.couleur = true;
+                color_set = true;
             }
         }
 
