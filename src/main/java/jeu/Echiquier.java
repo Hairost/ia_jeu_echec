@@ -133,6 +133,18 @@ public class Echiquier {
 		}
 	}
 
+	public void updateEchiquier() {
+		for(int i=0; i<8; i++) {
+			for(int j=0; j<8; j++) {
+				try  {
+				this.getCase(i, j).setEchiquier(this);
+				}catch(NullPointerException e) {
+
+				}
+			}
+		}
+	}
+
 	public ArrayList<Move> getPossibleMoves() {
 		ArrayList<Move> list = new ArrayList<>();
 
@@ -196,6 +208,68 @@ public class Echiquier {
 		return false;
 	}
 
+	public boolean isOpponentEchec() {
+		
+		ArrayList<Piece> pieces;
+		if (couleur == true)
+			pieces = this.getPiecesNoires();
+		else {
+			pieces = this.getPiecesBlanches();
+		}
+
+		for (Piece p : pieces) {
+			if (p.getNom() == "roi") {
+				Roi pr = (Roi) p;
+				boolean value = pr.isEchec();
+				if (value == true)
+					return true;
+			}
+		}
+		return false;
+	}
+
+
+	public boolean isEchecEtMat() {
+
+		ArrayList<Piece> pieces;
+		if (couleur == true)
+			pieces = this.getPiecesBlanches();
+		else {
+			pieces = this.getPiecesNoires();
+		}
+
+		for (Piece p : pieces) {
+			if (p.getNom() == "roi") {
+				Roi pr = (Roi) p;
+				boolean value = pr.isEchecEtMat();
+				if (value == true)
+					return true;
+			}
+		}
+		return false;
+	}
+
+	public boolean isOpponentEchecEtMat() {
+		
+		ArrayList<Piece> pieces;
+		if (couleur == true)
+			pieces = this.getPiecesNoires();
+		else {
+			pieces = this.getPiecesBlanches();
+		}
+
+		for (Piece p : pieces) {
+			if (p.getNom() == "roi") {
+				Roi pr = (Roi) p;
+				boolean value = pr.isEchecEtMat();
+				if (value == true)
+					return true;
+			}
+		}
+		return false;
+	}
+
+
 	public int evaluate() {
 		int result = 0;
 
@@ -232,9 +306,26 @@ public class Echiquier {
 			}
 		}
 
-		result = result + 2 * (this.getPossibleMoves().size());
+		result = result + 5 * (this.getPossibleMoves().size());
 
 		// Ajouter mise en echec
+
+		if(this.isEchec()) {
+			result -= 500;
+		}
+
+		if(this.isOpponentEchec()) {
+			result += 500;
+		}
+
+		if(this.isEchecEtMat()) {
+			result -= 1000;
+		}
+
+		if(this.isOpponentEchecEtMat()) {
+			result += 1000;
+		}
+
 
 		return result;
 	}
