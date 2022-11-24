@@ -60,7 +60,7 @@ public class Minimax {
             int score = (int) maxi(depth - 1, mv.eq).get(1);
             if (score < (int) min.get(1))
                 min.set(0, mv);
-            min.set(1, score);
+                min.set(1, score);
         }
         return min;
     }
