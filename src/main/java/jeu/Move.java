@@ -52,7 +52,7 @@ public class Move {
 			if (c5 == 'q') {
 				System.out.println("Ok ca marche - Promotion Reine");
 				String color;
-				if (eq.couleur == true)
+				if (eq.couleur != true)
 					color = "blanc";
 				else
 					color = "noir";
@@ -64,7 +64,7 @@ public class Move {
 			else if (c5 == 'r') {
 				System.out.println("Ok ca marche - Promotion Tour");
 				String color;
-				if (eq.couleur == true)
+				if (eq.couleur != true)
 					color = "blanc";
 				else
 					color = "noir";
@@ -76,7 +76,7 @@ public class Move {
 			else if (c5 == 'n') {
 				System.out.println("Ok ca marche - Promotion Cavalier");
 				String color;
-				if (eq.couleur == true)
+				if (eq.couleur != true)
 					color = "blanc";
 				else
 					color = "noir";
@@ -88,7 +88,7 @@ public class Move {
 			else if (c5 == 'b') {
 				System.out.println("Ok ca marche - Promotion Fou");
 				String color;
-				if (eq.couleur == true)
+				if (eq.couleur != true)
 					color = "blanc";
 				else
 					color = "noir";
