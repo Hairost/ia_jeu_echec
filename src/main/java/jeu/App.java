@@ -88,8 +88,6 @@ public class App {
 					.force_deplacement(new_mouv.pieceFin.getX(), new_mouv.pieceFin.getY());
 			if (new_mouv.promotedPiece != null)
 				echec.setCase(new_mouv.pieceFin.getX(), new_mouv.pieceFin.getY(), new_mouv.promotedPiece);
-			System.out.println(
-					"Type de piece : " + echec.getCase(new_mouv.pieceFin.getX(), new_mouv.pieceFin.getY()).getNom());
 		}
 	}
 

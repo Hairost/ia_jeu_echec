@@ -148,8 +148,13 @@ public class Echiquier {
 			ArrayList<Coordonnees> coords = piece.listeDeplacementsValides();
 			for (Coordonnees coord : coords) {
 				Echiquier eq2 = this.clone();
-				eq2.getPieces().get(i).deplacement(coord.getX(), coord.getY());
-				eq2 = eq2.getPieces().get(i).getEchiquier().clone();
+				if (couleur == true) {
+					eq2.getPiecesBlanches().get(i).deplacement(coord.getX(), coord.getY());
+					eq2 = eq2.getPiecesBlanches().get(i).getEchiquier().clone();
+				} else {
+					eq2.getPiecesNoires().get(i).deplacement(coord.getX(), coord.getY());
+					eq2 = eq2.getPiecesNoires().get(i).getEchiquier().clone();
+				}
 
 				// System.out.println("-----");
 				// eq2.printEchiquier();
