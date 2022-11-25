@@ -145,6 +145,49 @@ public class Echiquier {
 		}
 	}
 
+	public ArrayList<Move> getPossibleMovesEnnemi() {
+		ArrayList<Move> list = new ArrayList<>();
+
+		ArrayList<Piece> pieces;
+		if (couleur == true)
+			pieces = this.getPiecesNoires();
+		else {
+			pieces = this.getPiecesBlanches();
+		}
+
+		int i = 0;
+		for (Piece piece : pieces) {
+			ArrayList<Coordonnees> coords = piece.listeDeplacementsValides();
+			for (Coordonnees coord : coords) {
+				Echiquier eq2 = this.clone();
+				if (couleur == true) {
+					eq2.getPiecesNoires().get(i).deplacement(coord.getX(), coord.getY());
+					eq2 = eq2.getPiecesNoires().get(i).getEchiquier().clone();
+				} else {
+					eq2.getPiecesBlanches().get(i).deplacement(coord.getX(), coord.getY());
+					eq2 = eq2.getPiecesBlanches().get(i).getEchiquier().clone();
+				}
+
+				// System.out.println("-----");
+				// eq2.printEchiquier();
+				// System.out.println("-----");
+				if (!eq2.isOpponentEchec()) {
+					Coordonnees coord_start = new Coordonnees(piece.getX(), piece.getY());
+					Move move;
+					if (piece.isPion() && ((Pion) piece).isPromotion(coord.getY())) {// si la piece est un pion et est
+																						// promue
+						move = new Move(coord_start, new Coordonnees(coord.getX(), coord.getY()), eq2, true);
+
+					} else
+						move = new Move(coord_start, new Coordonnees(coord.getX(), coord.getY()), eq2);
+					list.add(move);
+				}
+			}
+			i++;
+		}
+		return list;
+	}
+
 	public ArrayList<Move> getPossibleMoves() {
 		ArrayList<Move> list = new ArrayList<>();
 
@@ -284,7 +327,7 @@ public class Echiquier {
 			if (p.getNom().equals("pion")) {
 				result += 10;
 			} else if (p.getNom().equals("reine")) {
-				result += 100;
+				result += 200;
 			} else {
 				result += 60;
 			}
