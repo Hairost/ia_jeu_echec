@@ -125,7 +125,7 @@ public class App {
         echec.printEchiquier();
         System.out.println("info : moves possible " + echec.getPossibleMoves().size());
 
-        move = Minimax.maxiFirst(3, echec);
+        move = Minimax.maxiFirst(2, echec);
 
         String UCI_start_move = move.convertPieceDebutUCI();
         String UCI_end_move = move.convertPieceFinUCI();

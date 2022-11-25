@@ -282,11 +282,11 @@ public class Echiquier {
 
 		for (Piece p : pieces) {
 			if (p.getNom().equals("pion")) {
-				result += 5;
+				result += 10;
 			} else if (p.getNom().equals("reine")) {
-				result += 50;
+				result += 100;
 			} else {
-				result += 30;
+				result += 60;
 			}
 		}
 
