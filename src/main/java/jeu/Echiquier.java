@@ -161,10 +161,10 @@ public class Echiquier {
 			for (Coordonnees coord : coords) {
 				Echiquier eq2 = this.clone();
 				if (couleur == true) {
-					eq2.getPiecesNoires().get(i).deplacement(coord.getX(), coord.getY());
+					eq2.getPiecesNoires().get(i).force_deplacement(coord.getX(), coord.getY());
 					eq2 = eq2.getPiecesNoires().get(i).getEchiquier().clone();
 				} else {
-					eq2.getPiecesBlanches().get(i).deplacement(coord.getX(), coord.getY());
+					eq2.getPiecesBlanches().get(i).force_deplacement(coord.getX(), coord.getY());
 					eq2 = eq2.getPiecesBlanches().get(i).getEchiquier().clone();
 				}
 
